@@ -12,3 +12,5 @@ def primeFactors(n):
 
     if n>2:
         print (n)
+
+primeFactors(30)
