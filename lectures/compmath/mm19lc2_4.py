@@ -34,7 +34,6 @@ def lucas(n):
         lucas_numbers.append(lucas_numbers[i - 2] + lucas_numbers[i - 3])
     return lucas_numbers
 
-
 # (5) def polartocartesian
 def polartocartesian(r, theta):
     return r * math.cos(theta), r * math.sin(theta)
