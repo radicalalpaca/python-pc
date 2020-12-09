@@ -154,46 +154,42 @@ def montecarlo(M):
     for j in range(M):
         x, y = np.random.uniform(0, 1), np.random.uniform(0, 1)
         i += 1
-        if (x - 1/2)**2 + (y - 1/2)**2 <= 1/4:
+        if (x - 1 / 2) ** 2 + (y - 1 / 2) ** 2 <= 1 / 4:
             hits += 1
     return 4 * (hits / i)
 
+
 # Q2e
 def montecarlo_accuracy(eps):
-    i = 0
-    hits = 0
     pi_approx = 0
     n = 1
     while abs(pi_approx - np.pi) >= eps:
-        for j in range(n):
-            x, y = np.random.uniform(0, 1), np.random.uniform(0, 1)
-            i += 1
-            if (x - 1 / 2) ** 2 + (y - 1 / 2) ** 2 <= 1 / 4:
-                hits += 1
-        pi_approx = 4 * (hits / i)
+        pi_approx = montecarlo(n)
         n += 1
-    return pi_approx
+    return pi_approx, n
+
 
 # Add answers as comments
 # The rate of convergence is a random variable, it changes each time the monte carlo method is run.
-# The variance is what matters.
+# The variance of the random variable is what matters for the rate of convergence.
 
 
 ##############
 # Part 3 below
 #
-import decimal
 
 def gauss_legendre(n):
-    a, b, t, p = 1, 1/np.sqrt(2), 1/4, 1
+    a, b, t, p = 1, 1 / np.sqrt(2), 1 / 4, 1
     for i in range(n):
         an = (a + b) / 2
         b = np.sqrt(a * b)
-        t -= p * (a - an) * (a- an)
-        a, p = an, 2*p
-    return ((a + b)**2) / (4*t)
+        t -= p * (a - an) * (a - an)
+        a, p = an, 2 * p
+    return ((a + b) ** 2) / (4 * t)
 
 
 plot_error(gauss_legendre)
 plt.legend()
 plt.show()
+# The Gauss-Legendre algorithm is much faster than all the other algorithms tested,
+# giving a more accurate result after just a few iterations.
