@@ -27,7 +27,7 @@ def plotter(n, thresh, max_steps = 25):
 
     return img
 
-n = 10000
+n = 1000
 img = plotter(n, thresh=4, max_steps=50)
 plt.imshow(img, cmap="nipy_spectral")
 plt.axis("off")
